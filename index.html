@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>汉语学院 – Mr. Coulibaly | Apprendre le Chinois</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --red:    #c0392b;
+      --gold:   #d4a017;
+      --ink:    #1a1208;
+      --cream:  #fdf6e3;
+      --paper:  #f5ede0;
+      --muted:  #7a6a55;
+      --accent: #e8c87a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    /* ── TICKER BANNER ── */
+    .ticker-wrap {
+      background: var(--red);
+      padding: 12px 0;
+      overflow: hidden;
+      position: relative;
+      z-index: 100;
+    }
+    .ticker-wrap::before, .ticker-wrap::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 60px;
+      z-index: 2;
+    }
+    .ticker-wrap::before { left: 0;  background: linear-gradient(to right, var(--red), transparent); }
+    .ticker-wrap::after  { right: 0; background: linear-gradient(to left, var(--red), transparent); }
+    .ticker-track {
+      display: flex;
+      white-space: nowrap;
+      animation: ticker 28s linear infinite;
+      width: max-content;
+    }
+    .ticker-track span {
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 500;
+      padding: 0 40px;
+      letter-spacing: .04em;
+    }
+    .ticker-track .zh {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 1.1rem;
+      color: var(--accent);
+    }
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ── HERO ── */
+    header {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 24px 60px;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 30%, #fff7e6 0%, transparent 70%),
+        var(--cream);
+      text-align: center;
+      overflow: hidden;
+    }
+
+    /* decorative Chinese characters background */
+    .bg-chars {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      opacity: .04;
+    }
+    .bg-chars span {
+      font-family: 'Noto Serif SC', serif;
+      position: absolute;
+      font-size: clamp(60px, 10vw, 140px);
+      color: var(--red);
+      animation: float 12s ease-in-out infinite;
+    }
+    .bg-chars span:nth-child(1) { top: 5%;  left: 5%;  animation-delay: 0s; }
+    .bg-chars span:nth-child(2) { top: 20%; right: 8%; animation-delay: -3s; font-size: 80px; }
+    .bg-chars span:nth-child(3) { bottom: 15%; left: 12%; animation-delay: -6s; font-size: 100px; }
+    .bg-chars span:nth-child(4) { bottom: 10%; right: 5%; animation-delay: -9s; font-size: 90px; }
+    .bg-chars span:nth-child(5) { top: 50%; left: 50%; transform: translate(-50%,-50%); font-size: 200px; opacity: .5; animation: none; }
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50%       { transform: translateY(-20px) rotate(3deg); }
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--red);
+      color: #fff;
+      font-size: .72rem;
+      font-weight: 500;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: 6px 18px;
+      border-radius: 20px;
+      margin-bottom: 28px;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.6rem, 7vw, 5.5rem);
+      line-height: 1.1;
+      font-weight: 700;
+      color: var(--ink);
+      position: relative;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--red);
+    }
+    .hero-zh {
+      font-family: 'Noto Serif SC', serif;
+      font-size: clamp(1.4rem, 3vw, 2.4rem);
+      color: var(--gold);
+      letter-spacing: .15em;
+      margin: 12px 0 28px;
+    }
+    .hero-sub {
+      max-width: 560px;
+      font-size: 1.05rem;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 40px;
+    }
+    .hero-btns {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .btn {
+      display: inline-block;
+      padding: 14px 32px;
+      border-radius: 4px;
+      font-size: .95rem;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+      text-decoration: none;
+      transition: all .25s;
+    }
+    .btn-primary {
+      background: var(--red);
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(192,57,43,.35);
+    }
+    .btn-primary:hover { background: #a93226; transform: translateY(-2px); }
+    .btn-outline {
+      background: transparent;
+      color: var(--red);
+      border: 2px solid var(--red);
+    }
+    .btn-outline:hover { background: var(--red); color: #fff; }
+
+    /* ── SCROLL INDICATOR ── */
+    .scroll-hint {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: var(--muted);
+      font-size: .75rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      animation: bounce 2s infinite;
+    }
+    .scroll-hint::after {
+      content: '↓';
+      font-size: 1.2rem;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: rgba(253,246,227,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(212,160,23,.25);
+      padding: 0 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 62px;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      color: var(--red);
+      font-weight: 700;
+    }
+    .nav-logo span { font-family: 'Noto Serif SC', serif; color: var(--gold); margin-left: 8px; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { font-size: .88rem; color: var(--muted); text-decoration: none; font-weight: 500; transition: color .2s; }
+    .nav-links a:hover { color: var(--red); }
+    .nav-cta { background: var(--red); color: #fff; padding: 9px 22px; border-radius: 4px; font-size: .85rem; font-weight: 500; text-decoration: none; transition: background .2s; }
+    .nav-cta:hover { background: #a93226; }
+
+    /* ── SECTION COMMONS ── */
+    section { padding: 90px 24px; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-size: .72rem;
+      font-weight: 500;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 18px;
+    }
+    .section-title em { font-style: italic; color: var(--red); }
+    .divider {
+      width: 60px; height: 3px;
+      background: var(--gold);
+      margin: 0 0 32px;
+      border-radius: 2px;
+    }
+
+    /* ── ABOUT / PROFILE ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 70px;
+      align-items: center;
+    }
+    .profile-card {
+      background: var(--paper);
+      border: 1px solid rgba(212,160,23,.25);
+      border-radius: 12px;
+      padding: 32px 24px;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(26,18,8,.08);
+      position: relative;
+    }
+    .profile-card::before {
+      content: '师';
+      font-family: 'Noto Serif SC', serif;
+      position: absolute;
+      top: -18px; right: -14px;
+      font-size: 80px;
+      color: var(--red);
+      opacity: .07;
+    }
+    .profile-img-wrap {
+      width: 130px; height: 130px;
+      margin: 0 auto 18px;
+      position: relative;
+    }
+    .profile-img-wrap img,
+    .profile-img-placeholder {
+      width: 130px; height: 130px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--gold);
+      box-shadow: 0 4px 20px rgba(212,160,23,.3);
+    }
+    .profile-img-placeholder {
+      background: linear-gradient(135deg, #c0392b 0%, #8b1a10 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Noto Serif SC', serif;
+      font-size: 2.5rem;
+      color: #fff;
+      cursor: pointer;
+    }
+    .profile-upload-btn {
+      position: absolute;
+      bottom: 4px; right: 4px;
+      width: 32px; height: 32px;
+      background: var(--red);
+      border: 2px solid #fff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      font-size: .9rem;
+      color: #fff;
+      transition: background .2s;
+    }
+    .profile-upload-btn:hover { background: var(--gold); }
+    #file-input { display: none; }
+    .profile-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .profile-title { font-size: .82rem; color: var(--muted); margin-top: 4px; }
+    .profile-stars { color: var(--gold); font-size: 1rem; margin: 10px 0 6px; }
+    .profile-rating { font-size: .78rem; color: var(--muted); }
+    .profile-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .stat-box {
+      background: #fff;
+      border-radius: 8px;
+      padding: 12px 8px;
+      border: 1px solid rgba(212,160,23,.2);
+    }
+    .stat-box strong { display: block; font-size: 1.4rem; color: var(--red); font-family: 'Playfair Display', serif; }
+    .stat-box span   { font-size: .72rem; color: var(--muted); }
+
+    .about-content { }
+    .about-content p { font-size: 1rem; color: #4a3f30; line-height: 1.8; margin-bottom: 16px; }
+    .contact-row {
+      display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px;
+    }
+    .contact-pill {
+      display: flex; align-items: center; gap: 8px;
+      background: var(--paper);
+      border: 1px solid rgba(212,160,23,.3);
+      border-radius: 30px;
+      padding: 8px 18px;
+      font-size: .85rem;
+      color: var(--ink);
+      text-decoration: none;
+      transition: all .2s;
+    }
+    .contact-pill:hover { background: var(--red); color: #fff; border-color: var(--red); }
+    .contact-pill .icon { font-size: 1rem; }
+
+    /* ── FEATURES ── */
+    #offres { background: var(--paper); }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      margin-top: 50px;
+    }
+    .feature-card {
+      background: var(--cream);
+      border: 1px solid rgba(212,160,23,.2);
+      border-radius: 10px;
+      padding: 32px 24px;
+      transition: all .3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .feature-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--red);
+      transform: scaleX(0);
+      transition: transform .3s;
+    }
+    .feature-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(26,18,8,.1); }
+    .feature-card:hover::after { transform: scaleX(1); }
+    .feature-icon { font-size: 2rem; margin-bottom: 16px; }
+    .feature-card h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 10px; }
+    .feature-card p { font-size: .88rem; color: var(--muted); line-height: 1.7; }
+
+    /* ── LEVELS ── */
+    .levels-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 50px;
+    }
+    .level-card {
+      background: var(--paper);
+      border-radius: 10px;
+      padding: 28px 20px;
+      text-align: center;
+      border: 1px solid rgba(212,160,23,.2);
+      transition: all .3s;
+    }
+    .level-card:hover { background: var(--red); color: #fff; }
+    .level-card:hover .level-zh,
+    .level-card:hover .level-desc { color: rgba(255,255,255,.8); }
+    .level-card:hover .level-num { color: rgba(255,255,255,.3); }
+    .level-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 700;
+      color: rgba(192,57,43,.12);
+      line-height: 1;
+    }
+    .level-zh {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 1.6rem;
+      color: var(--gold);
+      display: block;
+      margin: 4px 0;
+      transition: color .3s;
+    }
+    .level-name { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; }
+    .level-desc { font-size: .8rem; color: var(--muted); margin-top: 8px; transition: color .3s; }
+
+    /* ── INSCRIPTION ── */
+    #inscription { background: var(--ink); }
+    #inscription .section-label { color: var(--gold); }
+    #inscription .section-title { color: #fff; }
+    #inscription .section-title em { color: var(--gold); }
+    #inscription .divider { background: var(--red); }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 40px;
+    }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group.full { grid-column: 1 / -1; }
+    .form-group label { font-size: .8rem; color: rgba(255,255,255,.6); letter-spacing: .06em; text-transform: uppercase; }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 6px;
+      padding: 13px 16px;
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .95rem;
+      transition: border .2s;
+      outline: none;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: rgba(255,255,255,.3); }
+    .form-group select option { background: var(--ink); }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--gold); background: rgba(255,255,255,.09); }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+
+    .form-submit-row {
+      grid-column: 1/-1;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+    .btn-submit {
+      background: var(--red);
+      color: #fff;
+      border: none;
+      padding: 15px 40px;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: all .25s;
+      box-shadow: 0 4px 20px rgba(192,57,43,.4);
+    }
+    .btn-submit:hover { background: #a93226; transform: translateY(-2px); }
+    .form-privacy { font-size: .78rem; color: rgba(255,255,255,.35); max-width: 300px; }
+
+    /* success msg */
+    .success-msg {
+      display: none;
+      background: rgba(212,160,23,.15);
+      border: 1px solid var(--gold);
+      border-radius: 8px;
+      padding: 20px 24px;
+      color: var(--gold);
+      text-align: center;
+      font-size: 1rem;
+      margin-top: 16px;
+      grid-column: 1/-1;
+    }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 50px;
+    }
+    .testimonial-card {
+      background: var(--paper);
+      border: 1px solid rgba(212,160,23,.2);
+      border-radius: 10px;
+      padding: 28px;
+    }
+    .testimonial-card .quote-mark {
+      font-family: 'Playfair Display', serif;
+      font-size: 4rem;
+      line-height: .6;
+      color: var(--red);
+      opacity: .25;
+      margin-bottom: 12px;
+    }
+    .testimonial-card p { font-size: .92rem; color: #4a3f30; line-height: 1.75; font-style: italic; }
+    .testimonial-author { display: flex; align-items: center; gap: 12px; margin-top: 20px; }
+    .author-avatar {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      background: var(--red);
+      display: flex; align-items: center; justify-content: center;
+      color: #fff;
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+    .author-info strong { font-size: .9rem; display: block; }
+    .author-info span { font-size: .78rem; color: var(--muted); }
+
+    /* ── FAQ ── */
+    #faq { background: var(--paper); }
+    .faq-list { margin-top: 40px; display: flex; flex-direction: column; gap: 12px; }
+    .faq-item {
+      background: var(--cream);
+      border: 1px solid rgba(212,160,23,.2);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 22px;
+      cursor: pointer;
+      font-weight: 500;
+      font-size: .95rem;
+    }
+    .faq-question .icon {
+      width: 24px; height: 24px;
+      background: var(--red);
+      border-radius: 50%;
+      color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .75rem;
+      flex-shrink: 0;
+      transition: transform .3s;
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .4s ease;
+    }
+    .faq-answer p { padding: 0 22px 18px; font-size: .9rem; color: var(--muted); line-height: 1.75; }
+    .faq-item.open .faq-answer { max-height: 200px; }
+    .faq-item.open .faq-question .icon { transform: rotate(45deg); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0f0b05;
+      color: rgba(255,255,255,.5);
+      padding: 50px 24px 30px;
+      text-align: center;
+    }
+    .footer-logo {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 2rem;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .footer-tagline { font-size: .88rem; margin-bottom: 24px; }
+    .footer-links { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 28px; }
+    .footer-links a { color: rgba(255,255,255,.4); text-decoration: none; font-size: .82rem; transition: color .2s; }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-copy { font-size: .78rem; border-top: 1px solid rgba(255,255,255,.07); padding-top: 20px; margin-top: 12px; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .form-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      nav { padding: 0 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-track" id="ticker">
+    <span>语言是通往世界的钥匙</span>
+    <span>— La langue est la clé vers le monde —</span>
+    <span class="zh">学中文，开新世界</span>
+    <span>Apprenez le Mandarin avec Mr. Coulibaly</span>
+    <span class="zh">中文课程 · 在线学习</span>
+    <span>— Inscrivez-vous aujourd'hui —</span>
+    <span>语言是通往世界的钥匙</span>
+    <span>— La langue est la clé vers le monde —</span>
+    <span class="zh">学中文，开新世界</span>
+    <span>Apprenez le Mandarin avec Mr. Coulibaly</span>
+    <span class="zh">中文课程 · 在线学习</span>
+    <span>— Inscrivez-vous aujourd'hui —</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">汉语学院 <span>Académie</span></div>
+  <ul class="nav-links">
+    <li><a href="#apropos">À propos</a></li>
+    <li><a href="#offres">Cours</a></li>
+    <li><a href="#niveaux">Niveaux</a></li>
+    <li><a href="#avis">Témoignages</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <a href="#inscription" class="nav-cta">S'inscrire</a>
+</nav>
+
+<!-- HERO -->
+<header>
+  <div class="bg-chars">
+    <span>学</span>
+    <span>语</span>
+    <span>文</span>
+    <span>道</span>
+    <span>中</span>
+  </div>
+  <div class="hero-badge">✦ Cours de Mandarin en Ligne ✦</div>
+  <h1 class="hero-title">Apprenez le <em>Chinois</em><br>et ouvrez le monde</h1>
+  <p class="hero-zh">学习中文，开启新世界</p>
+  <p class="hero-sub">Rejoignez des centaines d'apprenants qui maîtrisent le mandarin avec Mr. Coulibaly — cours personnalisés, progressifs et accessibles depuis partout.</p>
+  <div class="hero-btns">
+    <a href="#inscription" class="btn btn-primary">Commencer maintenant</a>
+    <a href="#apropos" class="btn btn-outline">Rencontrer le prof</a>
+  </div>
+  <div class="scroll-hint">Explorer</div>
+</header>
+
+<!-- ABOUT -->
+<section id="apropos">
+  <div class="container">
+    <div class="about-grid">
+      <div class="profile-card">
+        <div class="profile-img-wrap">
+          <div class="profile-img-placeholder" id="profile-display">柯</div>
+          <img id="profile-photo" src="" alt="Mr Coulibaly" style="display:none; width:130px; height:130px; border-radius:50%; border:4px solid var(--gold); box-shadow:0 4px 20px rgba(212,160,23,.3);" />
+          <div class="profile-upload-btn" onclick="document.getElementById('file-input').click()" title="Changer la photo">📷</div>
+          <input type="file" id="file-input" accept="image/*" onchange="loadPhoto(event)" />
+        </div>
+        <div class="profile-name">Mr. Coulibaly Petheul</div>
+        <div class="profile-title">Professeur de Mandarin Certifié</div>
+        <div class="profile-stars">★★★★★</div>
+        <div class="profile-rating">4.9 / 5 · 200+ élèves formés</div>
+        <div class="profile-stats">
+          <div class="stat-box"><strong>5+</strong><span>Ans d'expérience</span></div>
+          <div class="stat-box"><strong>200+</strong><span>Élèves</span></div>
+          <div class="stat-box"><strong>HSK</strong><span>Certifié</span></div>
+          <div class="stat-box"><strong>100%</strong><span>En ligne</span></div>
+        </div>
+        <div class="contact-row" style="margin-top:20px; flex-direction:column; gap:8px;">
+          <a class="contact-pill" href="tel:+2250714267799">
+            <span class="icon">📞</span> +225 07 14 26 77 99
+          </a>
+          <a class="contact-pill" href="https://wa.me/2250714267799" target="_blank">
+            <span class="icon">💬</span> WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <div class="about-content">
+        <p class="section-label">À propos du professeur</p>
+        <h2 class="section-title">Votre guide vers la <em>maîtrise</em> du mandarin</h2>
+        <div class="divider"></div>
+        <p>Mr. Coulibaly Petheul est un enseignant passionné et certifié, spécialisé dans l'apprentissage du mandarin pour francophones. Grâce à sa méthode pédagogique unique, il rend le chinois accessible à tous les niveaux.</p>
+        <p>Ses cours en ligne sont interactifs, progressifs et adaptés à votre rythme de vie. Du premier mot jusqu'à la fluidité conversationnelle, Mr. Coulibaly vous accompagne à chaque étape de votre voyage linguistique.</p>
+        <p>Sa méthode combine <strong>écoute active, écriture des caractères, grammaire vivante</strong> et pratique orale intensive pour des résultats rapides et durables.</p>
+        <div class="contact-row">
+          <a class="contact-pill" href="tel:+2250714267799"><span class="icon">📞</span> Appeler</a>
+          <a class="contact-pill" href="https://wa.me/2250714267799" target="_blank"><span class="icon">💬</span> WhatsApp</a>
+          <a class="contact-pill" href="#inscription"><span class="icon">✏️</span> S'inscrire</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OFFRES -->
+<section id="offres">
+  <div class="container">
+    <p class="section-label">Nos cours</p>
+    <h2 class="section-title">Ce que vous <em>apprendrez</em></h2>
+    <div class="divider"></div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🔤</div>
+        <h3>Pinyin & Prononciation</h3>
+        <p>Maîtrisez le système phonétique du mandarin dès le départ pour parler avec confiance et précision.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">✍️</div>
+        <h3>Écriture des Caractères</h3>
+        <p>Apprenez les caractères hanzi les plus utilisés, leur signification et leur ordre de tracé.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💬</div>
+        <h3>Conversation Pratique</h3>
+        <p>Des dialogues réels pour les situations du quotidien : voyage, travail, commerce, amitié.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📖</div>
+        <h3>Grammaire Structurée</h3>
+        <p>Une grammaire claire, expliquée en français, pour construire des phrases correctes rapidement.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎧</div>
+        <h3>Compréhension Orale</h3>
+        <p>Entraînez votre oreille avec des audio authentiques pour comprendre les natifs.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📜</div>
+        <h3>Préparation HSK</h3>
+        <p>Préparez les examens officiels HSK 1 à 6 pour certifier votre niveau à l'international.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEVELS -->
+<section id="niveaux">
+  <div class="container">
+    <p class="section-label">Niveaux disponibles</p>
+    <h2 class="section-title">Choisissez votre <em>niveau</em></h2>
+    <div class="divider"></div>
+    <div class="levels-grid">
+      <div class="level-card">
+        <div class="level-num">1</div>
+        <span class="level-zh">入门</span>
+        <div class="level-name">Débutant</div>
+        <div class="level-desc">Zéro connaissance requise. Partez de zéro.</div>
+      </div>
+      <div class="level-card">
+        <div class="level-num">2</div>
+        <span class="level-zh">基础</span>
+        <div class="level-name">Élémentaire</div>
+        <div class="level-desc">Vous connaissez quelques mots et phrases.</div>
+      </div>
+      <div class="level-card">
+        <div class="level-num">3</div>
+        <span class="level-zh">中级</span>
+        <div class="level-name">Intermédiaire</div>
+        <div class="level-desc">Vous pouvez tenir une conversation simple.</div>
+      </div>
+      <div class="level-card">
+        <div class="level-num">4</div>
+        <span class="level-zh">高级</span>
+        <div class="level-name">Avancé</div>
+        <div class="level-desc">Vous visez la fluidité et la certification HSK.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSCRIPTION FORM -->
+<section id="inscription">
+  <div class="container">
+    <p class="section-label">✦ Inscription gratuite</p>
+    <h2 class="section-title">Commencez votre <em>voyage</em> aujourd'hui</h2>
+    <div class="divider"></div>
+    <p style="color:rgba(255,255,255,.5); font-size:.95rem; max-width:520px;">Remplissez le formulaire ci-dessous et Mr. Coulibaly vous contactera dans les 24h pour organiser votre premier cours.</p>
+
+    <form class="form-grid" id="inscriptionForm" onsubmit="submitForm(event)">
+      <div class="form-group">
+        <label>Prénom *</label>
+        <input type="text" placeholder="Votre prénom" required />
+      </div>
+      <div class="form-group">
+        <label>Nom *</label>
+        <input type="text" placeholder="Votre nom" required />
+      </div>
+      <div class="form-group">
+        <label>Email *</label>
+        <input type="email" placeholder="votre@email.com" required />
+      </div>
+      <div class="form-group">
+        <label>Téléphone / WhatsApp</label>
+        <input type="tel" placeholder="+225 ..." />
+      </div>
+      <div class="form-group">
+        <label>Niveau actuel *</label>
+        <select required>
+          <option value="" disabled selected>-- Choisissez votre niveau --</option>
+          <option>Débutant (zéro connaissance)</option>
+          <option>Élémentaire (quelques mots)</option>
+          <option>Intermédiaire</option>
+          <option>Avancé</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Objectif principal</label>
+        <select>
+          <option value="" disabled selected>-- Votre objectif --</option>
+          <option>Voyage en Chine</option>
+          <option>Travail / Affaires</option>
+          <option>Examen HSK</option>
+          <option>Culture et curiosité</option>
+          <option>Autre</option>
+        </select>
+      </div>
+      <div class="form-group full">
+        <label>Message (optionnel)</label>
+        <textarea placeholder="Présentez-vous ou posez une question…"></textarea>
+      </div>
+      <div class="form-submit-row">
+        <button type="submit" class="btn-submit">✦ Envoyer ma demande</button>
+        <p class="form-privacy">Vos données sont confidentielles et ne seront jamais partagées.</p>
+      </div>
+      <div class="success-msg" id="successMsg">
+        🎉 <strong>Félicitations !</strong> Votre inscription a été envoyée avec succès.<br>
+        <span style="font-size:.9rem; opacity:.8;">Mr. Coulibaly vous contactera très bientôt. 加油！(Bonne chance !)</span>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="avis">
+  <div class="container">
+    <p class="section-label">Témoignages</p>
+    <h2 class="section-title">Ce que disent nos <em>élèves</em></h2>
+    <div class="divider"></div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="quote-mark">"</div>
+        <p>En seulement 3 mois avec Mr. Coulibaly, j'ai pu tenir ma première vraie conversation en mandarin. Sa patience et sa méthode sont exceptionnelles.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">A</div>
+          <div class="author-info">
+            <strong>Aminata Diallo</strong>
+            <span>Étudiante · Abidjan</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="quote-mark">"</div>
+        <p>Je préparais mon voyage d'affaires en Chine. Grâce aux cours de Mr. Coulibaly, j'ai pu négocier directement avec mes partenaires chinois. Incroyable !</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">K</div>
+          <div class="author-info">
+            <strong>Kofi Mensah</strong>
+            <span>Entrepreneur · Accra</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="quote-mark">"</div>
+        <p>Le meilleur professeur de chinois en ligne pour les francophones. Il explique tout en français et adapte vraiment son approche à votre niveau.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">F</div>
+          <div class="author-info">
+            <strong>Fatoumata Bah</strong>
+            <span>Fonctionnaire · Conakry</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container">
+    <p class="section-label">Foire aux questions</p>
+    <h2 class="section-title">Vous avez des <em>questions</em> ?</h2>
+    <div class="divider"></div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          Comment se déroulent les cours en ligne ?
+          <div class="icon">+</div>
+        </div>
+        <div class="faq-answer"><p>Les cours se déroulent via WhatsApp, Zoom ou Google Meet selon votre préférence. Chaque session dure entre 45 min et 1h30, avec des supports envoyés à l'avance.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          Combien coûtent les cours ?
+          <div class="icon">+</div>
+        </div>
+        <div class="faq-answer"><p>Les tarifs varient selon la formule choisie (cours individuel, groupe, intensif). Contactez Mr. Coulibaly via WhatsApp au +225 07 14 26 77 99 pour un devis personnalisé.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          Faut-il des prérequis pour s'inscrire ?
+          <div class="icon">+</div>
+        </div>
+        <div class="faq-answer"><p>Aucun prérequis ! Les cours débutent depuis zéro connaissance. Mr. Coulibaly accueille des élèves de tous les niveaux, de l'absolue débutant à l'avancé.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          En combien de temps puis-je parler chinois ?
+          <div class="icon">+</div>
+        </div>
+        <div class="faq-answer"><p>Avec 3 à 4 séances par semaine, vous pouvez tenir une conversation basique en 2 mois. Atteindre le niveau HSK 2 en 4 à 6 mois est tout à fait réalisable.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          Proposez-vous des cours en groupe ?
+          <div class="icon">+</div>
+        </div>
+        <div class="faq-answer"><p>Oui ! Des petits groupes de 3 à 6 personnes sont organisés régulièrement pour une expérience plus dynamique et conviviale, à tarif réduit.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">汉语学院</div>
+  <p class="footer-tagline">Académie de Mandarin en Ligne · Mr. Coulibaly Petheul</p>
+  <div class="footer-links">
+    <a href="#apropos">À propos</a>
+    <a href="#offres">Cours</a>
+    <a href="#niveaux">Niveaux</a>
+    <a href="#inscription">Inscription</a>
+    <a href="https://wa.me/2250714267799" target="_blank">WhatsApp</a>
+  </div>
+  <p class="footer-copy">© 2025 Mr. Coulibaly Petheul · Tous droits réservés · +225 07 14 26 77 99</p>
+</footer>
+
+<script>
+  /* Photo upload */
+  function loadPhoto(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(ev) {
+      const ph = document.getElementById('profile-display');
+      const img = document.getElementById('profile-photo');
+      ph.style.display = 'none';
+      img.src = ev.target.result;
+      img.style.display = 'block';
+    };
+    reader.readAsDataURL(file);
+  }
+
+  /* FAQ toggle */
+  function toggleFaq(el) {
+    const item = el.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  /* Form submit */
+  function submitForm(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.btn-submit');
+    btn.textContent = '⏳ Envoi en cours…';
+    btn.disabled = true;
+    setTimeout(() => {
+      document.getElementById('successMsg').style.display = 'block';
+      btn.textContent = '✓ Envoyé !';
+      btn.style.background = '#27ae60';
+      e.target.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    }, 1500);
+  }
+
+  /* Nav active highlight */
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let cur = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 120) cur = s.getAttribute('id');
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + cur ? 'var(--red)' : '';
+    });
+  });
+
+  /* Animate cards on scroll */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.feature-card, .level-card, .testimonial-card').forEach(card => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(30px)';
+    card.style.transition = 'opacity .5s ease, transform .5s ease';
+    observer.observe(card);
+  });
+</script>
+</body>
+</html>
